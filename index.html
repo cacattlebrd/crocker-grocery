@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#1f5132">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Grocery">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+<title>Crocker Grocery</title>
+</head>
+<body>
+
+<!-- Name picker (first visit) -->
+<div id="name-picker" class="screen hidden">
+  <div class="name-picker-inner">
+    <h1>Who's this?</h1>
+    <button class="name-btn" data-name="Chad">Chad</button>
+    <button class="name-btn" data-name="Ashley">Ashley</button>
+    <button class="name-btn" data-name="Clayton">Clayton</button>
+  </div>
+</div>
+
+<!-- Main app -->
+<div id="app" class="screen hidden">
+
+  <header>
+    <div class="header-left">
+      <span id="current-user-badge"></span>
+    </div>
+    <div class="header-title">Grocery</div>
+    <div class="header-right">
+      <button id="refresh-btn" class="icon-btn" title="Refresh">↻</button>
+    </div>
+  </header>
+
+  <!-- View tabs -->
+  <nav id="view-tabs">
+    <button class="view-tab active" data-view="list">List</button>
+    <button class="view-tab" data-view="history">History</button>
+  </nav>
+
+  <!-- List view -->
+  <section id="view-list" class="view active">
+    <nav id="store-tabs">
+      <button class="store-tab active" data-store="HEB">HEB</button>
+      <button class="store-tab" data-store="Sam's Club">Sam's</button>
+      <button class="store-tab" data-store="Tractor Supply">Tractor</button>
+      <button class="store-tab" data-store="Walmart">Walmart</button>
+      <button class="store-tab" data-store="Petco">Petco</button>
+    </nav>
+    <div id="items-container">
+      <div class="empty-state">Loading...</div>
+    </div>
+  </section>
+
+  <!-- History view -->
+  <section id="view-history" class="view">
+    <div class="search-row">
+      <input id="history-search" type="search" placeholder="Search bought items..." autocomplete="off">
+    </div>
+    <div id="history-container">
+      <div class="empty-state">Loading history...</div>
+    </div>
+  </section>
+
+  <!-- Add button (only visible on list view) -->
+  <button id="add-btn" class="fab">+ Add Item</button>
+
+  <!-- Switch user (footer link) -->
+  <footer>
+    <a href="#" id="switch-user">Switch user</a>
+    <span id="status-line"></span>
+  </footer>
+</div>
+
+<!-- Add Item modal -->
+<div id="add-modal" class="modal hidden">
+  <div class="modal-card">
+    <h2>Add an item</h2>
+
+    <label>Store</label>
+    <div id="add-store-buttons" class="store-picker">
+      <button type="button" class="store-pick" data-store="HEB">HEB</button>
+      <button type="button" class="store-pick" data-store="Sam's Club">Sam's Club</button>
+      <button type="button" class="store-pick" data-store="Tractor Supply">Tractor Supply</button>
+      <button type="button" class="store-pick" data-store="Walmart">Walmart</button>
+      <button type="button" class="store-pick" data-store="Petco">Petco</button>
+    </div>
+
+    <label for="add-item">Item</label>
+    <input id="add-item" type="text" placeholder="Milk, eggs, dog food..." autocomplete="off">
+
+    <label for="add-qty">Quantity (optional)</label>
+    <input id="add-qty" type="text" placeholder="2 gal, 3 lb, 1 case..." autocomplete="off">
+
+    <label for="add-notes">Notes (optional)</label>
+    <input id="add-notes" type="text" placeholder="Whole milk, brown eggs..." autocomplete="off">
+
+    <div class="modal-buttons">
+      <button id="add-cancel" type="button" class="btn-ghost">Cancel</button>
+      <button id="add-save" type="button" class="btn-primary">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="toast hidden"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
